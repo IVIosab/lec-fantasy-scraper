@@ -9,15 +9,12 @@ from selenium.webdriver.common.by import By
 
 # Global lists
 
-players_scores = {}
-players_matches = {}
-players_matches_items_scores = {}
 players = {} #Follows the following structure 
 # players = {
 #   player_name: {
 #       days: [],
 #       scores: [],
-#       items_scores: [{}]
+#       items: [{}]
 #   } 
 # }
 #
@@ -109,9 +106,6 @@ urls = [
     LEC_LINK+"match/cde8b957-d5db-11ec-9e84-06f414ba766d",
     LEC_LINK+"match/c61b1233-d5db-11ec-9e84-06f414ba766d",
     LEC_LINK+"match/d738e2bc-d5db-11ec-9e84-06f414ba766d",
-    
-    
-    
 ]
 
 
@@ -146,7 +140,7 @@ def main():
     for idx in range(len(urls)):
         day = int((idx+1)/5) + 1 #Each day has 5 matches except the first day which has 4
 
-        #if day==2 : #TESTING
+        #if idx==1 : #TESTING
         #    break
         
         driver.get(urls[idx]) #Get the current match
@@ -190,17 +184,22 @@ def main():
                 if player in players:
                     players[player]["days"].append(day)
                     players[player]["scores"].append(score)
-                    players[player]["items_scores"].append(item_scores)
+                    players[player]["items"].append(item_scores)
                 else:
                     players[player] = {}
                     players[player]["days"] = [day]
                     players[player]["scores"] = [score]
-                    players[player]["items_scores"] = [item_scores]
+                    players[player]["items"] = [item_scores]
     
     f = open('test.txt', 'a')
+    f.write('{\n')
     for player in players:
-        
-        f.write('"'+player+'": {')
+        f.write('{')
+        f.write('\n')
+
+        f.write('\t')
+        f.write('"name": ')
+        f.write('"'+player+'",')
         f.write('\n')
         
         f.write('\t')
@@ -212,7 +211,7 @@ def main():
             f.write('"')
             f.write(str(players[player]["days"][day]))
             f.write('"')
-            if day == len(players[player]["days"]):
+            if day == len(players[player]["days"])-1:
                 f.write('\n')
                 f.write('\t')
                 f.write('],')
@@ -230,7 +229,7 @@ def main():
             f.write('"')
             f.write(str(players[player]["scores"][day]))
             f.write('"')
-            if day == len(players[player]["scores"]):
+            if day == len(players[player]["scores"])-1:
                 f.write('\n')
                 f.write('\t')
                 f.write('],')
@@ -240,34 +239,37 @@ def main():
                 f.write('\n')
 
         f.write('\t')
-        f.write('"items_scores": [')
+        f.write('"items": [')
         f.write('\n')
 
-        for day in range(len(players[player]["items_scores"])):
+        for day in range(len(players[player]["items"])):
             f.write('\t\t')
             f.write('{')
             f.write('\n')
-            for key in players[player]["items_scores"][day]:
+            for key in players[player]["items"][day]:
                 f.write('\t\t\t')
                 f.write('"')
                 f.write(str(key))
                 f.write('": "')
-                f.write(str(players[player]["items_scores"][day][key]))
-                f.write('"')
+                f.write(str(players[player]["items"][day][key]))
+                if str(key) == "Wild Spirit":
+                    f.write('"')
+                else: 
+                    f.write('",')
                 f.write('\n')
             f.write('\t\t')
             f.write('}')
-            if day == len(players[player]["items_scores"]):
+            if day == len(players[player]["items"])-1:
                 f.write('\n')
                 f.write('\t')
-                f.write('],')
+                f.write(']')
                 f.write('\n')
             else :
                 f.write(',')
                 f.write('\n')
-
         f.write('}')
         f.write('\n')
+    f.write('}')
     f.close()
 
 if __name__ == '__main__':
