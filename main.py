@@ -191,7 +191,7 @@ def main():
                     players[player]["scores"] = [score]
                     players[player]["items"] = [item_scores]
     
-    f = open('test.txt', 'a')
+    f = open('test.json', 'a')
     f.write('{\n')
     for player in players:
         f.write('{')
@@ -267,7 +267,7 @@ def main():
             else :
                 f.write(',')
                 f.write('\n')
-        f.write('}')
+        f.write('},')
         f.write('\n')
     f.write('}')
     f.close()
