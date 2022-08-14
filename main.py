@@ -193,7 +193,10 @@ def main():
     
     f = open('test.json', 'a')
     f.write('{\n')
+    cnt = 0
     for player in players:
+        f.write('"'+str(cnt)+'": ')
+        cnt+=1
         f.write('{')
         f.write('\n')
 
