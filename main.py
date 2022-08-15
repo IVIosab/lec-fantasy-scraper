@@ -106,6 +106,16 @@ urls = [
     LEC_LINK+"match/cde8b957-d5db-11ec-9e84-06f414ba766d",
     LEC_LINK+"match/c61b1233-d5db-11ec-9e84-06f414ba766d",
     LEC_LINK+"match/d738e2bc-d5db-11ec-9e84-06f414ba766d",
+    LEC_LINK+"match/e51865f7-d5db-11ec-9e84-06f414ba766d",
+    LEC_LINK+"match/01168cf1-13cb-11ed-9e84-06f414ba766d",
+    LEC_LINK+"match/eb4c45b1-d5db-11ec-9e84-06f414ba766d",
+    LEC_LINK+"match/037592eb-ec9b-11ec-9e84-06f414ba766d",
+    LEC_LINK+"match/fdc5135d-d5db-11ec-9e84-06f414ba766d",
+    LEC_LINK+"match/0bb0072c-d5dc-11ec-9e84-06f414ba766d",
+    LEC_LINK+"match/03fd5a0c-d5dc-11ec-9e84-06f414ba766d",
+    LEC_LINK+"match/1b0e39d8-d5dc-11ec-9e84-06f414ba766d",
+    LEC_LINK+"match/12aac697-d5dc-11ec-9e84-06f414ba766d",
+    LEC_LINK+"match/21bceb1a-d5dc-11ec-9e84-06f414ba766d"
 ]
 
 
@@ -191,7 +201,7 @@ def main():
                     players[player]["scores"] = [score]
                     players[player]["items"] = [item_scores]
     
-    f = open('test.json', 'a')
+    f = open('final.json', 'a')
     f.write('{\n')
     cnt = 0
     for player in players:
