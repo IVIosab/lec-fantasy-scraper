@@ -43,7 +43,7 @@ You can run the project by:
 * Change the matches links in main.py
 * Run the code via terminal by using the command: "python3 main.py" 
 
-Now you are all set and the selenium will open a webdriver and starts scraping
+Now you are all set and selenium will open a webdriver and starts scraping
 
 <!-- USAGE EXAMPLES -->
 ## Usage
